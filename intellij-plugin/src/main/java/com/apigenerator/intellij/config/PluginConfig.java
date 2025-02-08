@@ -11,7 +11,7 @@ import org.jetbrains.annotations.Nullable;
 
 @State(
         name = "ApiGeneratorSettings",
-        storages = @Storage("api-generator.xml")
+        storages = @Storage(id = "", file = "api-generator.xml")
 )
 @Data
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {

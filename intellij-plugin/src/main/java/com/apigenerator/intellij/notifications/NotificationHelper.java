@@ -24,8 +24,8 @@ public class NotificationHelper {
         notify(project, title, content, WARNING);
     }
 
-    private static void notify(Project project, String title, String content, NotificationType type) {
-        Notification notification = new Notification(GROUP_ID, title, content, type);
-        Notifications.Bus.notify(notification, project);
-    }
+//    private static void notify(Project project, String title, String content, NotificationType type) {
+//        Notification notification = new Notification(GROUP_ID, title, content, type);
+//        Notifications.Bus.notify(notification, project);
+//    }
 }

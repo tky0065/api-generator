@@ -1,11 +1,12 @@
-// intellij-plugin/src/main/java/com/apigenerator/intellij/actions/GenerateApiAction.java
 package com.apigenerator.intellij.actions;
 
 import com.apigenerator.intellij.ui.GeneratorDialog;
 import com.apigenerator.intellij.processor.GenerateApiProcessor;
+import com.apigenerator.intellij.services.GeneratorService;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.DialogWrapper;
 import com.intellij.psi.PsiClass;
 import com.intellij.psi.PsiFile;
 import com.intellij.psi.PsiJavaFile;
@@ -58,8 +59,16 @@ public class GenerateApiAction extends AnAction {
 
     private void showGeneratorDialog(Project project, PsiClass psiClass) {
         GeneratorDialog dialog = new GeneratorDialog(project, psiClass);
-        if (dialog.showAndGet()) {
-            new GenerateApiProcessor(project, psiClass, dialog.getConfiguration()).generate();
+        GeneratorService generatorService = new GeneratorService(project);
+
+        dialog.show();  // Affiche d'abord le dialogue
+        if (dialog.getExitCode() == DialogWrapper.OK_EXIT_CODE) {  // Vérifie ensuite le résultat
+            new GenerateApiProcessor(
+                    project,
+                    psiClass,
+                    dialog.getConfiguration(),
+                    generatorService
+            ).generate();
         }
     }
 }

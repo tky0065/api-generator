@@ -1,4 +1,3 @@
-// intellij-plugin/src/main/java/com/apigenerator/intellij/ui/GeneratorDialog.java
 package com.apigenerator.intellij.ui;
 
 import com.intellij.openapi.project.Project;
@@ -22,10 +21,11 @@ public class GeneratorDialog extends DialogWrapper {
     private JCheckBox generateLiquibaseCheckBox;
 
     public GeneratorDialog(Project project, PsiClass psiClass) {
-        super(project);
+        super(project, true);
         this.psiClass = psiClass;
-        init();
         setTitle("Generate API Configuration");
+        super.init(); // Appel à la méthode init() du parent
+
     }
 
     @Nullable
