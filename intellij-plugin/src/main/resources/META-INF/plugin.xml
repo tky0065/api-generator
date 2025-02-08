@@ -1,0 +1,33 @@
+<idea-plugin>
+    <id>com.apigenerator</id>
+    <name>API Generator</name>
+    <vendor email="enokdev.bf@gmail.com" url="http://www.apigenerator.com">API Generator</vendor>
+
+    <description><![CDATA[
+        Un plugin pour générer automatiquement des APIs REST pour Spring Boot à partir des entités JPA.
+        <ul>
+            <li>Génération de DTOs</li>
+            <li>Création de Repositories</li>
+            <li>Génération de Services</li>
+            <li>Création de Controllers REST</li>
+            <li>Support de téléchargement de fichiers</li>
+            <li>Intégration Liquibase</li>
+        </ul>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectService serviceImplementation="com.apigenerator.intellij.services.GeneratorService"/>
+    </extensions>
+
+    <actions>
+        <action id="ApiGenerator.GenerateApi"
+                class="com.apigenerator.intellij.actions.GenerateApiAction"
+                text="Generate API"
+                description="Generate REST API for Entity">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>

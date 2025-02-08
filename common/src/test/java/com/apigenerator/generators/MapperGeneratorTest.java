@@ -71,7 +71,7 @@ class MapperGeneratorTest {
         };
 
         for (String element : expectedElements) {
-            assertTrue(generated.contains(element),
+              assertTrue(generated.contains(element),
                     "Le code généré devrait contenir: " + element);
         }
     }

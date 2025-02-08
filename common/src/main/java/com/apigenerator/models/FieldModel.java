@@ -15,6 +15,10 @@ public class FieldModel {
     private String comment;
     private String length;
     private RelationshipType relationshipType;
+    private boolean isUnique;
     private String targetEntity;
+    private boolean indexed;
+
+
 }
 
