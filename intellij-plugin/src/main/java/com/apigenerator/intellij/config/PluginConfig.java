@@ -4,16 +4,19 @@ package com.apigenerator.intellij.config;
 import com.intellij.openapi.components.PersistentStateComponent;
 import com.intellij.openapi.components.State;
 import com.intellij.openapi.components.Storage;
+import com.intellij.openapi.project.Project;
 import com.intellij.util.xmlb.XmlSerializerUtil;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+@Getter
+@Setter
 @State(
-        name = "ApiGeneratorSettings",
-        storages = @Storage(id = "", file = "api-generator.xml")
+        name = "APIGeneratorPluginSettings",
+        storages = @Storage(id = "", file = "api-generator-settings.xml")
 )
-@Data
 public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     private String basePackage = "com.example";
     private boolean useJakartaEE = false;
@@ -23,6 +26,10 @@ public class PluginConfig implements PersistentStateComponent<PluginConfig> {
     private boolean generateTests = true;
     private boolean generateLiquibase = true;
     private String authorName = "";
+
+    public static PluginConfig getInstance(@NotNull Project project) {
+        return project.getComponent(PluginConfig.class);
+    }
 
     @Override
     public @Nullable PluginConfig getState() {

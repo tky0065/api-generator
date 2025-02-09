@@ -1,15 +1,15 @@
+// intellij-plugin/src/main/resources/META-INF/plugin.xml
 <idea-plugin>
     <id>com.apigenerator</id>
     <name>API Generator</name>
-    <vendor email="enokdev.bf@gmail.com" url="http://www.apigenerator.com">API Generator</vendor>
+    <vendor email="support@apigenerator.com" url="https://www.apigenerator.com">API Generator</vendor>
 
     <description><![CDATA[
-        Un plugin pour générer automatiquement des APIs REST pour Spring Boot à partir des entités JPA.
+        Générateur d'API REST pour Spring Boot.
         <ul>
             <li>Génération de DTOs</li>
             <li>Création de Repositories</li>
-            <li>Génération de Services</li>
-            <li>Création de Controllers REST</li>
+            <li>Services et Controllers</li>
             <li>Support de téléchargement de fichiers</li>
             <li>Intégration Liquibase</li>
         </ul>
@@ -19,11 +19,17 @@
     <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <projectService serviceImplementation="com.apigenerator.intellij.services.GeneratorService"/>
+        <projectService serviceImplementation="com.apigenerator.intellij.service.ProjectSettingsService"/>
+        <projectConfigurable
+                instance="com.apigenerator.intellij.config.PluginSettingsForm"
+                displayName="API Generator Settings"/>
+        <notificationGroup id="API Generator"
+                           displayType="BALLOON"
+                           key="api.generator.notification.group"/>
     </extensions>
 
     <actions>
-        <action id="ApiGenerator.GenerateApi"
+        <action id="APIGenerator.GenerateAPI"
                 class="com.apigenerator.intellij.actions.GenerateApiAction"
                 text="Generate API"
                 description="Generate REST API for Entity">
